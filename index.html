@@ -1,73 +1,56 @@
+
 <!DOCTYPE html>
-<html lang="es">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Title Page</title>
+<!-- saved from url=(0033)https://c.runoob.com/front-end/61 -->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <!-- Bootstrap CSS -->
-        <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
-        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
-        <!-- Bootstrap -->
-        <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-        <!-- Font Awesome -->
-        <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-        <!-- NProgress -->
-        <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
-        <!-- bootstrap-daterangepicker -->
-        <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
-
-        <!-- Custom Theme Style -->
-        <link href="../build/css/custom.min.css" rel="stylesheet">
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-        <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.3/html5shiv.js"></script>
-            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
+    <title>Websocket Test</title>
+  </head>
+  <body>
+    <style type="text/css">
+      .title {background-color: #3C3C3C; color: #FFFFFF;}
+      .label {font-size: 16px; font-weight: bold; width: 70px;display: inline-block; margin-left: 20px}
+      .input {line-height: 25px; font-size: 16px; margin-left: 10px; padding-left: 5px; width: 500px; text-overflow: ellipsis}
+      .div {margin-top: 20px; margin-bottom: 20px}
+      .button {margin-left: 50px; font-size: 16px; font-weight: bold; color: #696969 }
+      
+    </style>
     
-    </head>
-    <body>                
-                    
-        <!-- jQuery -->
-        <script src="../vendors/jquery/dist/jquery.min.js"></script>
-        <!-- Bootstrap -->
-        <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-        <!-- FastClick -->
-        <script src="../vendors/fastclick/lib/fastclick.js"></script>
-        <!-- NProgress -->
-        <script src="../vendors/nprogress/nprogress.js"></script>
-        <!-- jQuery -->
-        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> -->
-        <!-- Bootstrap JavaScript -->
-        <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
-
-<script>
-
-/* var card = {"name":"John","age":"30"} */
-var card = 25   ;
-
-for (var i = 0; card > i ; i++ ) {
+    <h1 class="title">
+      Websocket Test Client
+    </h1>
     
-    $(document).ready(function () {
-        $("body").append('<div class="clearfix"></div>'+
-                    '<div class="col-md-4 col-sm-4 col-xs-12 profile_details">'+
-                     '<div class="well profile_view">'+
-                          '<div class="col-sm-12">'+
-                            '<div class="left col-xs-7">'+
-                               '<h2></h2>'+
-                              '<p><strong>About: </strong> Web Designer / UX / Graphic Artist / Coffee Lover </p>'+
-                              '<ul class="list-unstyled">'+
-                                '<li><i class="fa fa-building"></i> Address: </li>'+
-                                '<li><i class="fa fa-phone"></i> Phone #: </li>'+
-                              '</ul>'+
-                            '</div>'
-        
-    )});
-};
-
-</script>
- 
-    </body>
+    <h2>
+      Send Request
+    </h2>
+    <form>
+      <div class="div">
+        <label class="label">WSSURL:</label>
+        <input id="WSSURL" name="WSSURL" type="text" class="input">
+      </div>
+      <div class="div">
+        <label class="label">Event:</label>
+        <input id="eventType" name="eventType" type="text" class="input">
+      </div>
+      <div class="div">
+        <input class="button" id="connect" onclick="tryToConnect()" type="button" value="Connect">
+        <input class="button" id="send" onclick="tryToSend()" type="button" value="Send">
+        <input class="button" id="disconnect" onclick="tryToDisconnect()" type="button" value="Disconnect">
+        <input class="button" id="clear" onclick="tryToClearScreen()" type="button" value="Clear Screen">
+		<input class="button" id="test" onclick="tryToTest()" type="button" value="test">
+      </div>
+	  
+    </form>
+    
+    <hr>
+    
+    <h2>
+      Show Response
+    </h2>
+    <div id="output"></div>
+	
+	<script src="websocket.js">	</script>
+  
+</body>
 </html>
