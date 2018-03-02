@@ -1,0 +1,48 @@
+<script>
+connect();
+var query = "SELECT  sysdate from dual"
+var query2 = "select  sysdate-1 from dual"
+
+var sendmesg = '{"metodo": "consultaSQL", "parametros": ["'+query+'"]}'  
+var sendmesg2 = '{"metodo": "consultaSQL", "parametros": ["'+query2+'"]}' 
+
+var flag = true;
+
+function connect()
+{
+    try{        
+        var host = 'ws://10.245.107.135:2116'; 
+        var websocket = new WebSocket(host);      
+
+            websocket.onopen = function(event) {
+                websocket.send(sendmesg);  
+            };
+
+            websocket.onmessage = function(event) {
+                arr = JSON.parse(event.data);
+
+                if ( flag ) {
+                    flag = false;
+                    console.log("primero");
+                    console.table(arr);
+                    websocket.send(sendmesg2); 
+
+                }else{
+                    console.log("segundo");
+                    console.table(arr);
+                }
+                                
+            };
+        
+        }   catch(exception) {
+                console.log('<p>Error'+exception);
+            }
+}
+
+
+
+
+
+
+
+</script>
