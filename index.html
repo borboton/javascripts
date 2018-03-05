@@ -1,56 +1,266 @@
-
 <!DOCTYPE html>
-<!-- saved from url=(0033)https://c.runoob.com/front-end/61 -->
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Title Page</title>
+        <!-- Bootstrap -->
+        <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <!-- NProgress -->
+        <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+        <!-- iCheck -->
+        <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+        <!-- Datatables -->
+        <link href="../vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+        <link href="../vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+        <link href="../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+        <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+        <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+        <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+        <!-- Custom Theme Style -->
+        <link href="css/custom.css" rel="stylesheet">
 
-    <title>Websocket Test</title>
-  </head>
-  <body>
-    <style type="text/css">
-      .title {background-color: #3C3C3C; color: #FFFFFF;}
-      .label {font-size: 16px; font-weight: bold; width: 70px;display: inline-block; margin-left: 20px}
-      .input {line-height: 25px; font-size: 16px; margin-left: 10px; padding-left: 5px; width: 500px; text-overflow: ellipsis}
-      .div {margin-top: 20px; margin-bottom: 20px}
-      .button {margin-left: 50px; font-size: 16px; font-weight: bold; color: #696969 }
-      
-    </style>
+    </head>
+<style>
+.img-circle {
+    border-radius: 50%;
+    object-fit: cover;
+    width: 85%;
+    height: 128px;
+}
+</style>
+    <body>         
+        <div class="container">           
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="right_col" role="main">
+                        <!-- top tiles -->
+                        <div class="row tile_count">
+                            
+                            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                            <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
+                            <div class="count">0</div>
+                            <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+                            </div>
+                            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                            <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
+                            <div class="count">0</div>
+                            <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+                            </div>
+                            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                            <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
+                            <div class="count">0</div>
+                            <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+                            </div>
+                            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                            <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
+                            <div class="count">0</div>
+                            <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+                            </div>
+                            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                            <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
+                            <div class="count">0</div>
+                            <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+                            </div>
+                            <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                            <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
+                            <div class="count">0</div>
+                            <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <table id="usertable" class="table table-hover"></table>
+                </div>
+            </div>            
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">                    
+                    <div id="usercards"></div>
+                </div>
+            </div>         
+        </div>
+        
     
-    <h1 class="title">
-      Websocket Test Client
-    </h1>
-    
-    <h2>
-      Send Request
-    </h2>
-    <form>
-      <div class="div">
-        <label class="label">WSSURL:</label>
-        <input id="WSSURL" name="WSSURL" type="text" class="input">
-      </div>
-      <div class="div">
-        <label class="label">Event:</label>
-        <input id="eventType" name="eventType" type="text" class="input">
-      </div>
-      <div class="div">
-        <input class="button" id="connect" onclick="tryToConnect()" type="button" value="Connect">
-        <input class="button" id="send" onclick="tryToSend()" type="button" value="Send">
-        <input class="button" id="disconnect" onclick="tryToDisconnect()" type="button" value="Disconnect">
-        <input class="button" id="clear" onclick="tryToClearScreen()" type="button" value="Clear Screen">
-		<input class="button" id="test" onclick="tryToTest()" type="button" value="test">
-      </div>
-	  
-    </form>
-    
-    <hr>
-    
-    <h2>
-      Show Response
-    </h2>
-    <div id="output"></div>
-	
-	<script src="websocket.js">	</script>
-  
-</body>
+        <!-- jQuery -->
+        <script src="../vendors/jquery/dist/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- FastClick -->
+        <script src="../vendors/fastclick/lib/fastclick.js"></script>
+        <!-- NProgress -->
+        <script src="../vendors/nprogress/nprogress.js"></script>
+        <!-- iCheck -->
+        <script src="../vendors/iCheck/icheck.min.js"></script>
+        <!-- Datatables -->
+        <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+        <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+        <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+        <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+        <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+        <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+        <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+        <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+        <script src="../vendors/jszip/dist/jszip.min.js"></script>
+        <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+        <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+        <script src="../vendors/moment/min/moment.min.js"></script>
+        <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+
+<script>  
+dataArray = ""
+var legajo  = ""             
+var websocket;
+
+        /*  $(document).ready(function (){connectToServer()}); */
+        /*for(var i in window) if(window.hasOwnProperty(i)) console.log(i);*/
+        function logState(){
+                console.log ("CONNECTING 0 La conexión no está aún abierta.")
+                console.log ("OPEN       1 La conexión está abierta y lista para comunicar.")
+                console.log ("CLOSING	 2 La conexión está siendo cerrada.")
+                console.log ("CLOSED	 3 La conexión está cerrada o no puede ser abierta.")
+                console.log( "ReadyState: ", websocket.readyState )
+        }      
+
+//var query = "SELECT u.nombre_usuario, uu.nombre, ld.mail, ld.telefono, (s.nombre)sector , uu.edificio, uu.localidad, u.ip, u.fecha_login FROM usuarios uu, user_log u, ldap_carga_usuarios_new ld, usuarios_por_sector us, sectores s WHERE trunc(u.fecha_login) between trunc(sysdate) and trunc(sysdate)  and u.fecha_logout is null and uu.nombre_usuario  = u.nombre_usuario and uu.nombre_usuario = ld.nombre_usuario and uu.id_usuario = us.id_usuario and us.id_sector = s.id_sector order by u.fecha_login desc"
+//var query = "SELECT accion, COUNT(*)as TOT FROM user_actions_log GROUP by accion order by TOT desc"
+//var loginusers = '{"metodo": "consultaSQL", "parametros": ["'+query+'"]}'      
+/*var query2 = "SELECT ua.accion, ua.label_objeto_afectado FROM user_log ul, user_actions_log ua WHERE trunc(ul.fecha_login) between trunc(sysdate) and trunc(sysdate) and ul.fecha_logout is null and ul.fecha_login = ua.fecha and ul.num_session = ua.id_session"*/
+/*var counters = '{"metodo": "consultaSQL", "parametros": ["'+query2+'"]}'*/
+
+var query = "SELECT u.nombre_usuario, uu.nombre, ld.mail, ld.telefono, (s.nombre)sector , uu.edificio, uu.localidad, u.ip, u.fecha_login FROM usuarios uu, user_log u, ldap_carga_usuarios_new ld, usuarios_por_sector us, sectores s WHERE trunc(u.fecha_login) between trunc(sysdate) and trunc(sysdate)  and u.fecha_logout is null and uu.nombre_usuario  = u.nombre_usuario and uu.nombre_usuario = ld.nombre_usuario and uu.id_usuario = us.id_usuario and us.id_sector = s.id_sector order by u.fecha_login desc"
+var query2 = "SELECT usuario, accion, COUNT(*)as TOT FROM user_actions_log where usuario != 'SCANNET' and usuario != 'File' and trunc(fecha) between trunc(sysdate) and trunc(sysdate) GROUP by usuario, accion order by TOT desc"
+
+var sendmesg = '{"metodo": "consultaSQL", "parametros": ["'+query+'"]}'  
+var sendmesg2 = '{"metodo": "consultaSQL", "parametros": ["'+query2+'"]}' 
+var flag = true;
+connect();
+
+        function connect() {
+            try {        
+            var host = "ws://x.x.x.x:2116";
+            var websocket = new WebSocket(host);      
+
+                websocket.onopen = function(event) {
+                    websocket.send(sendmesg);              
+                };
+
+                websocket.onmessage = function(event) {
+                arr = JSON.parse(event.data);
+
+                if ( flag ) {
+                flag = false;
+                    createTable(arr);
+                    createCards(arr);
+                    websocket.send(sendmesg2);                             
+                } else {                         
+                    var namec = document.getElementsByClassName("count_top");
+                    var counts = document.getElementsByClassName("count");
+                    var proc = document.getElementsByClassName("count_bottom");
+                    for (var a = 0; a < arr.length; a++) {        
+                        namec[a].innerText = (arr[a].USUARIO);                        
+                        counts[a].innerText = (arr[a].TOT);
+                        proc[a].innerText = (arr[a].ACCION);                                    
+                    }
+                }                                   
+                };                
+            } catch(exception) {
+                  console.log('<p>Error'+exception);
+                  alert('Error: '+exception);
+            }
+        }
+
+        function createTable(dataArray){ 
+            $('#usertable').DataTable({        
+                 data: dataArray,
+                "order" : [[ 9, "desc" ]],
+                "columnDefs": [
+                {
+                    "targets": [ 3, 4, 7 ],
+                    "visible": false,
+                    "searchable": false,
+                },
+                { "width": "20%", "targets": 2 },
+                { "width": "15%", "targets":  4 }
+                ],
+                "columns": [   
+                    { "data": null, "defaultContent": "<a><i class='fa fa-users'></i></a>", "name": "img", "title": "#." },
+                    { "data": "NOMBRE_USUARIO", "name": "legajo", "title": "Legajo"},
+                    { "data": "NOMBRE", "name": "nombre", "title": "Nombre" },
+                    { "data": "MAIL", "name": "mail", "title": "Email" },
+                    { "data": "TELEFONO", "name": "telefono", "title": "Telefono" },
+                    { "data": "SECTOR", "name": "sector", "title": "Sector" },
+                    { "data": "EDIFICIO", "name": "edificio", "title": "Edificio" },
+                    { "data": "LOCALIDAD", "name": "localidad", "title": "Localidad" },
+                    { "data": "IP", "name": "ip", "title": "IP" },
+                    { "data": "FECHA_LOGIN", "name": "fecha_login", "title": "Login" },                    
+                ]
+            });           
+        };
+        function createCards(dataArray){
+            console.table(dataArray)
+            for (var i = 0; dataArray.length > i ; i++ ) {
+                
+                $("#usercards").append('<div class="col-md-4 col-sm-4 col-xs-12 profile_details">'+
+                     '   <div class="well profile_view">'+
+                     '     <div class="col-sm-12">'+
+                     '       <h4 class="brief"><i>'+dataArray[i].NOMBRE+'</i></h4>'+
+                     '       <div class="left col-xs-7">'+
+                     '         <h2></h2>'+
+                     '         <ul class="list-unstyled">'+                 
+                     '           <li><i class="fa fa-tag"></i> '+dataArray[i].NOMBRE_USUARIO+' </li>'+   
+                     '           <li><i class="fa fa-tag"></i> '+dataArray[i].TELEFONO+' </li>'+
+                     '           <li><i class="fa fa-tag"></i> '+dataArray[i].EDIFICIO+' </li>'+
+                     '           <li><i class="fa fa-tag"></i> '+dataArray[i].FECHA_LOGIN   +' </li>'+
+                     '           <li><i class="fa fa-tag"></i> '+dataArray[i].MAIL+' </li>'+                     
+                     '         </ul>'+
+                     '       </div>'+
+                     '       <div class="right col-xs-5 text-center">'+
+                     '         <img id="imgavatar" onerror="imageError(this);" class="img-circle img-responsive" src="http://signomobile.telecom.com.ar/irj/go/km/docs/fotos/0'+dataArray[i].NOMBRE_USUARIO.substring(1)+'.JPG">'+                     
+                     '       </div>'+
+                     '     </div>'+
+                     '     <div class="col-xs-12 bottom text-center">'+
+                     '       <div class="col-xs-12 col-sm-6 emphasis">'+
+                     '         <p class="ratings">'+
+                     '           <a>4.0</a>'+
+                     '           <a href="#"><span class="fa fa-star"></span></a>'+
+                     '           <a href="#"><span class="fa fa-star"></span></a>'+
+                     '           <a href="#"><span class="fa fa-star"></span></a>'+
+                     '           <a href="#"><span class="fa fa-star"></span></a>'+
+                     '           <a href="#"><span class="fa fa-star-o"></span></a>'+
+                     '         </p>'+
+                     '       </div>'+
+                     '       <div class="col-xs-12 col-sm-6 emphasis">'+
+                     '         <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">'+
+                     '           </i> <i class="fa fa-comments-o"></i> </button>'+
+                     '         <button type="button" class="btn btn-primary btn-xs">'+
+                     '           <i class="fa fa-user"> </i> View Profile'+
+                     '         </button>'+
+                     '       </div>'+
+                     '     </div>'+
+                     '   </div>'+
+                     '</div>');                                   
+            }       
+        };
+
+        function imageError(element){
+            element.src='https://image.flaticon.com/icons/png/128/149/149071.png';
+            console.log("onerror");     
+        };
+</script>
+    </body>
 </html>
