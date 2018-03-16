@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Title Page</title>
+        <!-- Bootstrap -->
+        <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <!-- NProgress -->
+        <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+        <!-- iCheck -->
+        <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+        <!-- Datatables -->
+        <link href="../vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+        <link href="../vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+        <link href="../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+        <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+        <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+        <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+        <!-- Custom Theme Style -->
+        
+        <link href="css/customtest.css" rel="stylesheet">
+<!--        <link href="css/forecast.css" rel="stylesheet">-->
+    </head>
+<style>
+#exTab1 .nav-pills > li > a {
+  border-radius: 0;
+}
+#exTab1 .tab-content {
+  background-color: #FFF;
+  padding : 5px 15px;
+}
+#map {
+  height: 100%;
+}
+.img-circle {
+    border-radius: 50%;
+    object-fit: cover;
+    width: 85%;
+    height: 128px;
+}
+</style>
+<body>  
+    <div id="exTab1" class="container">	
+        <ul  class="nav nav-pills">
+            <li class="active"><a  href="#1a" data-toggle="tab">Indice</a></li>
+            <li><a href="#2a" data-toggle="tab">Indice</a></li>
+            <li><a href="#3a" data-toggle="tab">Indice</a></li>        
+        </ul>
+        <div class="tab-content clearfix">
+            <div class="tab-pane active" id="1a">
+                <h1></h1>
+              
+                <div class="row tile_count">
+                        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                            <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
+                            <div class="count">0</div>
+                            <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                            <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
+                            <div class="count">0</div>
+                            <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                            <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
+                            <div class="count">0</div>
+                            <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                            <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
+                            <div class="count">0</div>
+                            <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                            <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
+                            <div class="count">0</div>
+                            <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+                        </div>
+                        <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
+                            <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
+                            <div class="count">0</div>
+                            <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+                        </div>
+                </div>
+                <table id="usertable" class="table table-hover"></table>
+            </div>
+            <div class="tab-pane" id="2a">
+                <h1></h1>
+                <div id="usercards" style="width:100%;height:500px;"></div>
+            </div>            
+            <div class="tab-pane" id="3a">
+                <h1></h1>
+                <div id="map" style="width:100%;height:550px;"></div>
+            </div>
+        </div>   
+          <div id="usertable"></div>               
+    </div>
+        <!-- jQuery -->
+        <script src="../vendors/jquery/dist/jquery.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>        
+        <!-- FastClick -->
+        <script src="../vendors/fastclick/lib/fastclick.js"></script>
+        <!-- NProgress -->
+        <script src="../vendors/nprogress/nprogress.js"></script>
+        <!-- iCheck -->
+        <script src="../vendors/iCheck/icheck.min.js"></script>
+        <!-- Datatables -->
+        <script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+        <script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+        <script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+        <script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+        <script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+        <script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+        <script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+        <script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+        <script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+        <script src="../vendors/jszip/dist/jszip.min.js"></script>
+        <script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+        <script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+        <script src="../vendors/moment/min/moment.min.js"></script>
+        <script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+        <!-- markercluster -->
+        <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+        <!-- Googlemaps  -->
+        <script src="js/oms.js"></script> 
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDieZ7uAY4DPdT3Z4fp4KtykHl6dWryYdw"></script>
+<script>
+NProgress.start();
+var query = "SELECT u.nombre_usuario, uu.nombre, ld.mail, ld.telefono, (s.nombre)sector , uu.edificio, uu.localidad, u.ip, u.fecha_login FROM usuarios uu, user_log u, ldap_carga_usuarios_new ld, usuarios_por_sector us, sectores s WHERE trunc(u.fecha_login) between trunc(sysdate) and trunc(sysdate)  and u.fecha_logout is null and uu.nombre_usuario  = u.nombre_usuario and uu.nombre_usuario = ld.nombre_usuario and uu.id_usuario = us.id_usuario and us.id_sector = s.id_sector order by u.fecha_login desc"
+var query2 = "SELECT usuario, accion, COUNT(*)as TOT FROM user_actions_log where usuario != 'SCANNET' and usuario != 'File' and trunc(fecha) between trunc(sysdate) and trunc(sysdate) GROUP by usuario, accion order by TOT desc"
+
+var sendmesg = '{"metodo": "consultaSQL", "parametros": ["'+query+'"]}'  
+var sendmesg2 = '{"metodo": "consultaSQL", "parametros": ["'+query2+'"]}' 
+var flag = true;
+
+connect();
+
+    function connect() {
+    try {        
+
+    //var host = 'ws://10.245.107.135:2116';
+    //var host = 'ws://10.66.33.184:2116'
+    var host = "ws://svpnpc1:2116";
+    var websocket = new WebSocket(host);      
+    websocket.onopen = function(event) {
+        websocket.send(sendmesg);              
+    };
+
+    websocket.onmessage = function(event) {
+        arr = JSON.parse(event.data);
+        if ( flag ) {
+        flag = false;
+           
+            createTable(arr);
+            createCards(arr);
+            initMap(arr)
+            websocket.send(sendmesg2);
+                           
+        } else { 
+
+                             
+        var namec = document.getElementsByClassName("count_top");
+        var counts = document.getElementsByClassName("count");
+        var proc = document.getElementsByClassName("count_bottom");
+            for (var a = 0; a < arr.length; a++) {        
+                namec[a].innerText = (arr[a].USUARIO);                        
+                counts[a].innerText = (arr[a].TOT);
+                proc[a].innerText = (arr[a].ACCION);                                    
+            }
+             
+        };    
+    };                
+    } catch(exception) {
+        console.log('<p>Error'+exception);
+        alert('Error: '+exception);
+    }};
+
+    function createTable(dataArray){ 
+        $("#usertable").DataTable({            
+        data: dataArray,
+        "order" : [[ 9, "desc" ]],
+        "columnDefs": [{
+            "targets": [ 3, 4, 7 ],
+            "visible": false,
+            "searchable": false,
+        },
+            { "width": "20%", "targets": 2 },
+            { "width": "15%", "targets":  4 }
+        ],
+        "columns": [   
+            { "data": null, "defaultContent": "<a><i class='fa fa-users'></i></a>", "name": "img", "title": "#." },
+            { "data": "NOMBRE_USUARIO", "name": "legajo", "title": "Legajo"},
+            { "data": "NOMBRE", "name": "nombre", "title": "Nombre" },
+            { "data": "MAIL", "name": "mail", "title": "Email" },
+            { "data": "TELEFONO", "name": "telefono", "title": "Telefono" },
+            { "data": "SECTOR", "name": "sector", "title": "Sector" },
+            { "data": "EDIFICIO", "name": "edificio", "title": "Edificio" },
+            { "data": "LOCALIDAD", "name": "localidad", "title": "Localidad" },
+            { "data": "IP", "name": "ip", "title": "IP" },
+            { "data": "FECHA_LOGIN", "name": "fecha_login", "title": "Login" }]
+        });       
+    };
+     /*'<img id="imgavatar" onerror="imageError(this);" class="img-circle img-responsive" src="http://signomobile.telecom.com.ar/irj/go/km/docs/fotos/0'+dataArray[i].NOMBRE_USUARIO.substring(1)+'.JPG">'+ */
+    function createCards(dataArray){
+        for (var i = 0; dataArray.length > i ; i++ ) {
+        
+        $("#usercards").append('<div class="col-md-4 col-sm-4 col-xs-12 profile_details">'+
+                    '<div class="well profile_view">'+
+                    '<div class="col-sm-12">'+
+                    '<h4 class="brief"><i>'+dataArray[i].NOMBRE+'</i></h4>'+
+                    '<div class="left col-xs-7">'+
+                    '  <h2></h2>'+
+                    '  <ul class="list-unstyled">'+                 
+                    '    <li><i class="fa fa-tag"></i> '+dataArray[i].NOMBRE_USUARIO+' </li>'+   
+                    '    <li><i class="fa fa-tag"></i> '+dataArray[i].TELEFONO+' </li>'+
+                    '    <li><i class="fa fa-tag"></i> '+dataArray[i].EDIFICIO+' </li>'+
+                    '    <li><i class="fa fa-tag"></i> '+dataArray[i].FECHA_LOGIN   +' </li>'+
+                    '    <li><i class="fa fa-tag"></i> '+dataArray[i].MAIL+' </li>'+                     
+                    '  </ul>'+
+                    '</div>'+
+                    '<div class="right col-xs-5 text-center">'+                   
+                    '    <img id="imgavatar" onerror="imageError(this);" class="img-circle img-responsive" src="https://mysitehost.telecom.com.ar/User%20Photos/Imagenes%20del%20perfil/'+dataArray[i].NOMBRE_USUARIO+'_LThumb.jpg"'+                     
+                    '</div>'+
+                    '</div>'+
+                    '<div class="col-xs-12 bottom text-center">'+
+                    '  <div class="col-xs-12 col-sm-6 emphasis">'+
+                    '    <p class="ratings">'+
+                    '      <a>4.0</a>'+
+                    '      <a href="#"><span class="fa fa-star"></span></a>'+
+                    '      <a href="#"><span class="fa fa-star"></span></a>'+
+                    '      <a href="#"><span class="fa fa-star"></span></a>'+
+                    '      <a href="#"><span class="fa fa-star"></span></a>'+
+                    '      <a href="#"><span class="fa fa-star-o"></span></a>'+
+                    '    </p>'+
+                    '</div>'+
+                    '<div class="col-xs-12 col-sm-6 emphasis">'+
+                    '  <button type="button" class="btn btn-success btn-xs"> <i class="fa fa-user">'+
+                    '    </i> <i class="fa fa-comments-o"></i> </button>'+
+                    '  <button type="button" class="btn btn-primary btn-xs">'+
+                    '    <i class="fa fa-user"> </i> View Profile'+
+                    '  </button>'+
+                    '</div>'+
+                    '</div>'+
+                    '</div>'+
+                    '</div>');                                   
+                    
+        }       
+    };
+    function imageError(element){
+        element.src='https://image.flaticon.com/icons/png/128/149/149071.png';
+        console.log("onerror");     
+    };
+       
+function initMap() {
+
+     var addresses = { 
+          "ALTA CORDOBA": { "lat": -31.393551, "lng": -64.185420}, 
+          "BELGRANO PAMPA": {"lat" :-34.535477, "lng": -58.507207 },
+          "CONGRESO 3924": {"lat": -34.563869, "lng": -58.477809 },
+          "COSTANERA": { "lat": -34.585885, "lng" : -58.399571 },
+          "EDIFICIO CAPITALINAS": {"lat" :-31.407444, "lng" : -64.190245},           
+          "EDIFICIO TELECOM": {"lat": -34.598812, "lng": -58.366722},
+          "GOLF": { "lat": -34.575077, "lng": -58.435784 }, 
+          "IRIONDO CENTRAL": {"lat":-32.933397, "lng": -60.670541 },
+          "MARTINEZ": { "lat":-34.486967, "lng": -58.5027739 },
+          "MARTINEZ ADMINISTRATIVO": { "lat": -34.486967, "lng" : -58.5027739 },
+          "null": { "lat": -34.608027, "lng": -58.370318},	 
+          "PARANA COMERCIAL": {"lat":-31.730417, "lng": -60.530763 },	
+          "RESISTENCIA CENTRAL": {"lat": -27.453661, "lng": -58.985558 },	 
+          "SAN MARTIN": {"lat": -34.535477, "lng" :-58.507207 },
+          "VILLA ALLENDE": {"lat": -31.294420, "lng": -64.299419 }, 
+          "VILLA BALLESTER CENTRAL" : { "lat" :-34.486967, "lng": -58.5027739 },
+          "CORDOBA CENTRO": { "lat": -31.416223, "lng":-64.181032},
+          "SUCURSAL/COMER SAN ISIDRO":{"lat": -34.472575, "lng": -58.514234 },
+          "ROSARIO SUR CENTRAL":{"lat": -32.946745, "lng": -60.643808 },
+          "COM/INGENIER RESISTENCIA": {"lat": -27.453661, "lng": -58.985558 },
+          "COGHLAN": {"lat": -34.577369, "lng":  -58.461303},
+          "MUÑECAS":{"lat": -26.827800 , "lng":-65.205491},
+          "VILLA MARIA CENTRAL": {"lat": -32.409114, "lng": -63.244101}
+        }
+    var center = new google.maps.LatLng(-31.393528, -64.185246);
+    var mapobj = new google.maps.Map(document.getElementById('map'), {
+      zoom: 5,
+      center: center,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });    
+    var markers = [];
+    var contentString;
+
+     var oms = new OverlappingMarkerSpiderfier(mapobj, {
+        markersWontMove: true,
+        markersWontHide: true,
+        basicFormatEvents: true
+    }); 
+    
+
+      for ( var i = 0 ; arr.length > i ; i++) {         
+          if( addresses.hasOwnProperty(arr[i].EDIFICIO) ){                      
+                var element = addresses[arr[i].EDIFICIO]     
+          }
+    var myinfowindow  = new google.maps.InfoWindow({
+        content:    '<ul class="list-unstyled">'+                 
+                    '    <li><i class="fa fa-user"></i> '+arr[i].NOMBRE+'</li>'+   
+                    '    <li><i class="fa fa-building"></i> Edificio '+arr[i].EDIFICIO+' Telecom Arg.</li>'+                      
+                    '</ul>'
+
+    });
+    var marker = new google.maps.Marker({
+        position: element,        
+        infowindow: myinfowindow
+
+    });
+  
+    google.maps.event.addListener(marker, 'mouseover', function () {          
+         this.infowindow.open(mapobj, this);
+    });
+    google.maps.event.addListener(marker, 'mouseout', function () {
+         this.infowindow.close(mapobj, this)
+    });
+    oms.addMarker(marker);         
+    markers.push(marker);
+    }                        
+    setTimeout(function() {    
+        var mc = new MarkerClusterer(mapobj, markers, {
+            imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',               
+            maxZoom: 10,
+            gridSize: 120
+        });    
+    }, 100);
+    }
+    NProgress.done();  
+
+    </script>
+
+</body>
+</html>

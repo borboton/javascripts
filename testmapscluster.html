@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Font Awesome -->
+        <link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+        <!-- NProgress -->
+        <link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
+        <!-- iCheck -->
+        <link href="../vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+        <!-- Datatables -->
+        <link href="../vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+        <link href="../vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+        <link href="../vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+        <link href="../vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+        <link href="../vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+        <link href="../vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+        <!-- Custom Theme Style -->
+        
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Marker Clustering</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+  <!--  <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABV-FZV5KerZuJWjUd5rosb2M2pABxoxc&libraries=places"></script>
+-->
+<script src="js/oms.js"></script> 
+<script> 
+
+        
+function initMap() {  
+    var addresses = { 
+          "ALTA CORDOBA": { "lat": -31.393551, "lng": -64.185420}, 
+          "BELGRANO PAMPA": {"lat" :-34.535477, "lng": -58.507207 },
+          "CONGRESO 3924": {"lat": -34.563869, "lng": -58.477809 },
+          "COSTANERA": { "lat": -34.575216, "lng" : -58.435932 },
+          "EDIFICIO CAPITALINAS": {"lat" :-34.575216, "lng" : -58.435932},           
+          "EDIFICIO TELECOM": {"lat": -34.575216, "lng": -58.435932},
+          "GOLF": { "lat":-34.575216, "lng": -58.435932 },	
+          "IRIONDO CENTRAL": {"lat":-32.933397, "lng": -60.670541 },
+          "MARTINEZ": { "lat":-34.486967, "lng": -58.5027739 },
+          "MARTINEZ ADMINISTRATIVO": { "lat": -34.486967, "lng" : -58.5027739 },
+          "null": { "lat": -34.608027, "lng": -58.370318},	 
+          "PARANA COMERCIAL": {"lat":-31.730417, "lng": -60.530763 },	
+          "RESISTENCIA CENTRAL": {"lat": -27.453661, "lng": -58.985558 },	  
+          "SAN MARTIN": {"lat": -34.535477, "lng" :-58.507207 },
+          "VILLA ALLENDE": {"lat": -31.294420, "lng": -64.299419 }, 
+          "VILLA BALLESTER CENTRAL" : { "lat" :-34.486967, "lng": -58.5027739 },
+          "CORDOBA CENTRO": { "lat": -31.416223, "lng":-64.181032},
+          "SUCURSAL/COMER SAN ISIDRO":{"lat": -34.472575, "lng": -58.514234 },
+          "ROSARIO SUR CENTRAL":{"lat": -32.946745, "lng": -60.643808 },
+          "COM/INGENIER RESISTENCIA": {"lat": -27.453661, "lng": -58.985558 },
+          "COGHLAN": {"lat": -34.577369, "lng":  -58.461303}
+        }
+    var center = new google.maps.LatLng(-34.5750, -58.4357);
+    var mapobj = new google.maps.Map(document.getElementById('map'), {
+      zoom: 3,
+      center: center,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });    
+    var markers = [];
+    var infoWindows = new google.maps.InfoWindow({ 
+      content: '<ul class="list-unstyled">'+                 
+                    '    <li><i class="fa fa-user"></i> Ariel Lorenzo </li>'+   
+                    '    <li><i class="fa fa-building"></i> Edificio Telecom </li>'+                      
+                    '  </ul>'
+    });
+
+    var oms = new OverlappingMarkerSpiderfier(mapobj, {
+        markersWontMove: true,
+        markersWontHide: true,
+        basicFormatEvents: true
+    }); 
+      
+      for (var key in addresses) {
+        if (addresses.hasOwnProperty(key)) {
+          var element = addresses[key];          
+        }
+      var marker = new google.maps.Marker({
+        position: element
+      });
+      google.maps.event.addListener(marker, 'mouseover', function () {
+          /*new google.maps.InfoWindow({ content: "element" }).open(mapobj, this);*/
+          infoWindows.open(mapobj, this)
+        });
+      google.maps.event.addListener(marker, 'mouseout', function () {
+         infoWindows.close(mapobj, this)
+        });
+      oms.addMarker(marker);
+      markers.push(marker)
+      }
+                      
+    setTimeout(function() {
+    
+      var mc = new MarkerClusterer(mapobj, markers, {
+        imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
+        maxZoom: 15,
+        gridSize: 80
+        
+      });
+    
+    }, 200);
+}
+
+
+</script>
+<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script> 
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABV-FZV5KerZuJWjUd5rosb2M2pABxoxc&libraries=places&callback=initMap"></script> 
+    
+   
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
